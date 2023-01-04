@@ -4,7 +4,10 @@ import axios from "axios";
 
 const useAxios = (url) => {
     const [state, setState] = useState([]);
-    const addToArray = async () => {
+    const addToArray = async (name) => {
+        if (typeof name === 'string'){
+            url = `${url}${name}`
+        }
         const response = await axios.get(url);
           setState(cards => [...cards, { ...response.data, id: uuid() }]);         
     };
